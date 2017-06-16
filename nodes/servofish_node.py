@@ -9,7 +9,7 @@ lastsendtime=time()
 
 send_interval = .5
 #create the fish communication object
-fish = servofish.ServoFish('/dev/ttyACM0',115200)
+fish = servofish.ServoFish('/dev/ttyACM1',115200)
 
 biasmax = 45#deg
 biasmin = -45#deg

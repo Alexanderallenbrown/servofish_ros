@@ -3,7 +3,7 @@ import serial
 class ServoFish:
     def __init__(self,device='/dev/ttyUSB0',baud=115200):
         try:
-            self.ser = serial.Serial(device,baud)  # open serial port)
+            self.ser = serial.Serial(device,baud,timeout=0.1)  # open serial port)
         except: 
             print "error opening serial port!!"
 
