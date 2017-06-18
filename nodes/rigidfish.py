@@ -1,6 +1,15 @@
 from numpy import *
 from matplotlib.pyplot import *
 
+class TailCommandGenerator:
+    def __init__(self):
+        self.phi = 0
+        self.theta_ref = 0
+
+    def update(self,enable,freq,amp,bias,dt):
+        if enable==1:
+            self.phi+=freq*dt
+            self.theta_ref = bias+amp*sin(self.phi)
 
 class TailServo:
     def __init__(self,tau=0.03,wmax=pi/3*10,wn=2*pi*10,zeta=0.8):
@@ -139,17 +148,17 @@ def main():
     xlabel('time (s)')
     ylabel('servo angle (deg)')
     title('step response of our tail servo')
-    show()
+    #show()
 
     fish = RigidFish()
 
     simtime = 10#seconds
-    dT = 0.01 #seconds, timestep for simulation
+    dT = 0.001 #seconds, timestep for simulation
     t = arange(0,simtime,dT) #time vector
 
-    tail_freq = 2*pi*1
-    tail_bias = 20*pi/180
-    tail_amp = 30*pi/180
+    tail_freq = 2*pi*1.
+    tail_bias = 40*pi/180
+    tail_amp = 40*pi/180
 
     #create a vector of desired position
     tail_desired = tail_bias + tail_amp*sin(tail_freq*t)

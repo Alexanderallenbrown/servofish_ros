@@ -1,0 +1,5 @@
+<launch>
+<node pkg="joy" type="joy_node" name="joy" args="_autorepeat_rate:=10.0"/>
+<node pkg="servofish_ros" type="servofish_sim_teleop.py" name="servofish_sim_teleop"/>
+<node pkg="rviz" type="rviz" name="rviz"/>
+</launch>
