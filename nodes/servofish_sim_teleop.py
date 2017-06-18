@@ -86,7 +86,7 @@ class PosePublisher():
         br.sendTransform((self.fishsim.x[3],self.fishsim.x[4],0),fishquat,self.timenow,'/fishsim','/world')
 
         tailquat = tf.transformations.quaternion_from_euler(0,0,self.tailsim.x[0])
-        br.sendTransform((-self.fishsim.c,0,0),tailquat,self.timenow,'/fishsim_tail','/fishsim')
+        br.sendTransform((0,0,0),tailquat,self.timenow,'/tailsim','/fishsim')
 
         #prepare messages for fish and tail position and velocity.
         fishpose_msg = PoseStamped()
@@ -127,10 +127,10 @@ class PosePublisher():
         fishmarker.mesh_resource = 'package://servofish_ros/meshes/fishbody.dae'
         fishmarker.mesh_use_embedded_materials = True
         fishmarker.action = fishmarker.MODIFY
-        fishmarker.scale.x = 1
-        fishmarker.scale.y = 1
-        fishmarker.scale.z = 1
-        tempquat = tf.transformations.quaternion_from_euler(0,0,0)#this is RELATIVE TO FISH ORIENTATION IN TF (does the mesh have a rotation?)
+        fishmarker.scale.x = 2.54
+        fishmarker.scale.y = 2.54
+        fishmarker.scale.z = 2.54
+        tempquat = tf.transformations.quaternion_from_euler(pi/2,0,pi/2)#this is RELATIVE TO FISH ORIENTATION IN TF (does the mesh have a rotation?)
         fishmarker.pose.orientation.w = tempquat[3]
         fishmarker.pose.orientation.x = tempquat[0]
         fishmarker.pose.orientation.y = tempquat[1]
@@ -151,10 +151,10 @@ class PosePublisher():
         tailmarker.mesh_resource = 'package://servofish_ros/meshes/fishtail.dae'
         tailmarker.mesh_use_embedded_materials = True
         tailmarker.action = tailmarker.MODIFY
-        tailmarker.scale.x = 1
-        tailmarker.scale.y = 1
-        tailmarker.scale.z = 1
-        tempquat = tf.transformations.quaternion_from_euler(0,0,0)#this is RELATIVE TO tail ORIENTATION IN TF (does the mesh have a rotation?)
+        tailmarker.scale.x = 2.54
+        tailmarker.scale.y = 2.54
+        tailmarker.scale.z = 2.54
+        tempquat = tf.transformations.quaternion_from_euler(pi/2,0,pi/2)#this is RELATIVE TO tail ORIENTATION IN TF (does the mesh have a rotation?)
         tailmarker.pose.orientation.w = tempquat[3]
         tailmarker.pose.orientation.x = tempquat[0]
         tailmarker.pose.orientation.y = tempquat[1]
@@ -171,7 +171,7 @@ class PosePublisher():
         self.tailmarkerpub.publish(tailmarker)
 
     def joycallback(self,data):
-        self.freq = pi/180*((data.axes[1]+1)*self.freqmax/2)
+        self.freq = ((data.axes[1]+1)*self.freqmax/2)
         self.bias = pi/180*((data.axes[2])*self.biasmax)
         self.amp = pi/180*((data.axes[3])*self.ampmax/2)
         self.enable = data.buttons[6]
