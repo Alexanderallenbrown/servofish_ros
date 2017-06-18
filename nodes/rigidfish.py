@@ -80,7 +80,7 @@ class TailServo:
 
 
 class RigidFish:
-    def __init__(self,S=.01,Cd=.4418,Kd=6.5e-4,Cl=3.41,mb=.311,J=5.08e-4,L=.04,rho=1000.,m=.4909,c=0.07,kf=.918,a=-.0116,b=.411):
+    def __init__(self,S=.01,Cd=.6418,Kd=6.5e-4,Cl=3.41,mb=.311,J=1.08e-4,L=.02,rho=1000.,m=.4909,c=3.25*.0254,kf=.918,a=-.0116,b=.411):
         """ 
         RigidFish(S=.01,Cd=.4418,Kd=6.5e-4,Cl=3.41,mb=.311,J=5.08e-4,L=.04,rho=1000.,m=.4909,c=0.07,kf=.918,a=-.0116,b=.411)
         Model adapted from Tan (2013) Chinese Control Conference

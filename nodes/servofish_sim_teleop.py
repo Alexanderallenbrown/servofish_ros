@@ -86,7 +86,7 @@ class PosePublisher():
         br.sendTransform((self.fishsim.x[3],self.fishsim.x[4],0),fishquat,self.timenow,'/fishsim','/world')
 
         tailquat = tf.transformations.quaternion_from_euler(0,0,self.tailsim.x[0])
-        br.sendTransform((0,0,0),tailquat,self.timenow,'/tailsim','/fishsim')
+        br.sendTransform((-3.25*.0254,0,0),tailquat,self.timenow,'/tailsim','/fishsim')
 
         #prepare messages for fish and tail position and velocity.
         fishpose_msg = PoseStamped()
@@ -101,7 +101,7 @@ class PosePublisher():
 
         tailpose_msg = PoseStamped()
         tailpose_msg.header.stamp = self.timenow
-        tailpose_msg.pose.position.x = -self.fishsim.c
+        tailpose_msg.pose.position.x = 0
         tailpose_msg.pose.position.y = 0
         tailpose_msg.pose.position.z = 0
         tailpose_msg.pose.orientation.x = 0
@@ -127,9 +127,9 @@ class PosePublisher():
         fishmarker.mesh_resource = 'package://servofish_ros/meshes/fishbody.dae'
         fishmarker.mesh_use_embedded_materials = True
         fishmarker.action = fishmarker.MODIFY
-        fishmarker.scale.x = 2.54
-        fishmarker.scale.y = 2.54
-        fishmarker.scale.z = 2.54
+        fishmarker.scale.x = 1
+        fishmarker.scale.y = 1
+        fishmarker.scale.z = 1
         tempquat = tf.transformations.quaternion_from_euler(pi/2,0,pi/2)#this is RELATIVE TO FISH ORIENTATION IN TF (does the mesh have a rotation?)
         fishmarker.pose.orientation.w = tempquat[3]
         fishmarker.pose.orientation.x = tempquat[0]
@@ -139,7 +139,7 @@ class PosePublisher():
         fishmarker.pose.position.y = 0
         fishmarker.pose.position.z = 0
         fishmarker.color.r = .5
-        fishmarker.color.g = .5
+        fishmarker.color.g = .8
         fishmarker.color.b = .5
         fishmarker.color.a = 1.0#transparency
 
@@ -151,20 +151,20 @@ class PosePublisher():
         tailmarker.mesh_resource = 'package://servofish_ros/meshes/fishtail.dae'
         tailmarker.mesh_use_embedded_materials = True
         tailmarker.action = tailmarker.MODIFY
-        tailmarker.scale.x = 2.54
-        tailmarker.scale.y = 2.54
-        tailmarker.scale.z = 2.54
+        tailmarker.scale.x = 1
+        tailmarker.scale.y = 1
+        tailmarker.scale.z = 1
         tempquat = tf.transformations.quaternion_from_euler(pi/2,0,pi/2)#this is RELATIVE TO tail ORIENTATION IN TF (does the mesh have a rotation?)
         tailmarker.pose.orientation.w = tempquat[3]
         tailmarker.pose.orientation.x = tempquat[0]
         tailmarker.pose.orientation.y = tempquat[1]
         tailmarker.pose.orientation.z = tempquat[2]
-        tailmarker.pose.position.x = 0
+        tailmarker.pose.position.x = 3.25*.0254
         tailmarker.pose.position.y = 0
         tailmarker.pose.position.z = 0
         tailmarker.color.r = .5
         tailmarker.color.g = .5
-        tailmarker.color.b = .5
+        tailmarker.color.b = .8
         tailmarker.color.a = 1.0#transparency
 
         self.fishmarkerpub.publish(fishmarker)
