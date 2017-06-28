@@ -9,6 +9,7 @@ Panels:
         - /TF1
         - /FishBody1
         - /TailMarker1
+        - /MeasuredFishMarker1
       Splitter Ratio: 0.5
     Tree Height: 359
   - Class: rviz/Selection
@@ -56,9 +57,9 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        fishsim:
+        camera1:
           Value: true
-        tailsim:
+        fish_measured:
           Value: true
         world:
           Value: true
@@ -69,8 +70,8 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          fishsim:
-            tailsim:
+          camera1:
+            fish_measured:
               {}
       Update Interval: 0
       Value: true
@@ -79,13 +80,21 @@ Visualization Manager:
       Marker Topic: /fishmarker
       Name: FishBody
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /tailmarker
       Name: TailMarker
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /measured_fishmarker
+      Name: MeasuredFishMarker
       Namespaces:
         "": true
       Queue Size: 100
@@ -114,24 +123,24 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.59601331
+      Distance: 0.804866254
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.978785336
-        Y: -1.51853812
-        Z: -1.19841945
+        X: -0.318011999
+        Y: 0.0827854723
+        Z: 0.122111015
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.585398853
+      Pitch: 0.090399012
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.158566
+      Yaw: 1.71356416
     Saved: ~
 Window Geometry:
   Displays:

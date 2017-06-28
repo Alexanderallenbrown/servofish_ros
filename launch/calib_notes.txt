@@ -1,0 +1,32 @@
+rosrun camera_calibration cameracalibrator.py --size 9x7 -
+-square 0.022 image:=/camera/image_raw camera:=/camera --no-service-check
+
+
+elp-usb camera:
+[image]
+
+width
+1280
+
+height
+720
+
+[narrow_stereo]
+
+camera matrix
+1529.871486 0.000000 836.456389
+0.000000 1547.260508 83.192763
+0.000000 0.000000 1.000000
+
+distortion
+-0.405414 0.096215 0.029070 0.005281 0.000000
+
+rectification
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 1.000000
+
+projection
+1344.831787 0.000000 878.693536 0.000000
+0.000000 1499.806641 81.185359 0.000000
+0.000000 0.000000 1.000000 0.000000
